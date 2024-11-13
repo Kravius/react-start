@@ -1,20 +1,16 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-// Дан следующий код:
+// Сделайте функцию getDigitsSum, которая будет находить сумму цифр переданного числа. С ее помощью выведите на экран сумму цифр числа 123.
 
-// function App() {
-// 	const isAuth = true;
-
-// 	return <div>
-// 		<p>вы авторизованы</p>
-// 	</div>;
-// }
-// Сделайте так, чтобы приведенный абзац с текстом показывался только если в isAuth записано true.
 function App() {
-  const isAuth = true;
-
-  return <div>{isAuth && <p>вы авторизованы</p>}</div>;
+  const num = 123;
+  function getDigitsSum() {
+    return num
+      .toString()
+      .split("")
+      .reduce((acc, num) => acc + +num, 0);
+  }
+  return <p>{getDigitsSum()}</p>;
 }
-
 export default App;
