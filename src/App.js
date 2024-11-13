@@ -1,16 +1,38 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-// Сделайте функцию getDigitsSum, которая будет находить сумму цифр переданного числа. С ее помощью выведите на экран сумму цифр числа 123.
+// Дан следующий код:
+
+// function App() {
+// 	function show1() {
+// 		alert(1);
+// 	}
+
+// 	function show2() {
+// 		alert(2);
+// 	}
+
+// 	return <div>
+// 		<button>act1</button>
+// 		<button>act2</button>
+// 	</div>;
+// }
+// Сделайте так, чтобы по клику на первую кнопку срабатывала первая функция, а по клику на вторую кнопку - вторая функция.
 
 function App() {
-  const num = 123;
-  function getDigitsSum() {
-    return num
-      .toString()
-      .split("")
-      .reduce((acc, num) => acc + +num, 0);
+  function show1() {
+    alert(1);
   }
-  return <p>{getDigitsSum()}</p>;
+
+  function show2() {
+    alert(2);
+  }
+
+  return (
+    <div>
+      <button onClick={show1}>act1</button>
+      <button onClick={show2}>act2</button>
+    </div>
+  );
 }
 export default App;
