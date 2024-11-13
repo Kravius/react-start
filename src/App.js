@@ -1,19 +1,28 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-// Дан массив:
-
 // function App() {
-// 	const arr = [1, 2, 3, 4, 5];
+// 	const obj = {name: 'john', surname: 'smit'};
 // }
-// Сделайте так, чтобы результатом рендеринга был тег ul, в тегах li которого будут стоять элементы массива.
+// Сделайте так, чтобы результатом рендеринга был следующий код:
+
+// <p>
+// 	name:    <span>john</span>, <br>
+// 	surname: <span>smit</span>,
+// </p>
+// Для значений имени и фамилии используйте значения элементов объекта.
 
 function App() {
-  const arr = [1, 2, 3, 4, 5, 6];
-  const ul = arr.map((el, ind) => {
-    return <li key={ind}>{el}</li>;
-  });
-  return <ul>{ul}</ul>;
+  const obj = { name: "john", surname: "smit" };
+
+  return (
+    <>
+      <p>
+        name: <span>{obj.name}</span>
+        surname: <span>{obj.surname}</span>
+      </p>
+    </>
+  );
 }
 
 export default App;
