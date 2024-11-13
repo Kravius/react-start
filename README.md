@@ -1,2 +1,2 @@
-just put kod from history in searching on some browser ⊗jsrtPmJxVAt
-or  [click](https://code.mu/ru/javascript/framework/react/book/prime/jsx/variables/attributes/)
+just put kod from history in searching on some browser ⊗jsrtPmJxTS
+or  [click](https://code.mu/en/javascript/framework/react/book/prime/jsx/tags/several/)
