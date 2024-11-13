@@ -1,21 +1,26 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-// Дана кнопка. По клику на нее получите объект Event и выведите его в консоль.
-// Дана кнопка. По клику на нее получите выведите в консоль event.target клика.
-function App() {
-  function funcEv(ev) {
-    console.log(ev);
-  }
-  function funcTarget(ev) {
-    console.log(ev.target);
-  }
-  return (
-    <>
-      <button onClick={(ev) => funcEv(ev)}>click ev</button>
-      <button onClick={(ev) => funcTarget(ev)}>click target</button>
-    </>
-  );
-}
+// В компоненте App дан следующий массив:
 
+const users = [
+  { name: "user1", surn: "surn1", age: 30 },
+  { name: "user2", surn: "surn2", age: 31 },
+  { name: "user3", surn: "surn3", age: 32 },
+];
+// Выведите элементы этого массива в виде списка ul.
+
+function App() {
+  const text = users.map((user, index) => {
+    const data = Object.entries(user);
+    const span = data.map(([key, value], index) => (
+      <span key={index}>
+        {key}:{value}
+      </span>
+    ));
+    return <li key={index}>{span}</li>;
+  });
+
+  return <ul>{text}</ul>;
+}
 export default App;
