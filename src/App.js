@@ -1,30 +1,20 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-// Дан следующий код:
+// Пусть в константе isAdult содержится true, если пользователю уже есть 18 лет, и false, если нет:
 
 // function App() {
-// 	const li1 = <li>text1</li>;
-// 	const li2 = <li>text2</li>;
-// 	const li3 = <li>text3</li>;
-// }
-// Сделайте так, чтобы результатом рендеринга было следующее:
+// 	const isAdult = true;
 
-// <ul>
-// 	<li>text1</li>
-// 	<li>text2</li>
-// 	<li>text3</li>
-// </ul>
+// }
+// Сделайте так, чтобы в зависимости от значения isAdult на экране показался или один абзац с текстом, или другой.
 
 function App() {
-  const ul = (
-    <ul>
-      <li>text1</li>
-      <li>text2</li>
-      <li>text3</li>
-    </ul>
-  );
-  return ul;
+  const isAdult = true;
+
+  const text = isAdult ? "18+" : "you don't have 18";
+
+  return <p>{text}</p>;
 }
 
 export default App;
