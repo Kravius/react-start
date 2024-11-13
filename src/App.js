@@ -4,18 +4,17 @@ import "./App.css";
 // Дан следующий код:
 
 // function App() {
-// 	const age = 19;
+// 	const isAuth = true;
 
 // 	return <div>
-
+// 		<p>вы авторизованы</p>
 // 	</div>;
 // }
-// Если в age записано больше 18 лет, то в тексте тега div покажите пользователю абзац с одним текстом, а если меньше - то с другим.
-
+// Сделайте так, чтобы приведенный абзац с текстом показывался только если в isAuth записано true.
 function App() {
-  const age = 19;
+  const isAuth = true;
 
-  return <div>{age ? <p>18+</p> : <p>nope</p>}</div>;
+  return <div>{isAuth && <p>вы авторизованы</p>}</div>;
 }
 
 export default App;
