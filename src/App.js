@@ -1,20 +1,21 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-// Пусть в константе isAdult содержится true, если пользователю уже есть 18 лет, и false, если нет:
+// Дан следующий код:
 
 // function App() {
-// 	const isAdult = true;
+// 	const age = 19;
 
+// 	return <div>
+
+// 	</div>;
 // }
-// Сделайте так, чтобы в зависимости от значения isAdult на экране показался или один абзац с текстом, или другой.
+// Если в age записано больше 18 лет, то в тексте тега div покажите пользователю абзац с одним текстом, а если меньше - то с другим.
 
 function App() {
-  const isAdult = true;
+  const age = 19;
 
-  const text = isAdult ? "18+" : "you don't have 18";
-
-  return <p>{text}</p>;
+  return <div>{age ? <p>18+</p> : <p>nope</p>}</div>;
 }
 
 export default App;
