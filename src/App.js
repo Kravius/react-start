@@ -1,28 +1,21 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-// function App() {
-// 	const obj = {name: 'john', surname: 'smit'};
-// }
-// Сделайте так, чтобы результатом рендеринга был следующий код:
+// Дан следующий код:
 
-// <p>
-// 	name:    <span>john</span>, <br>
-// 	surname: <span>smit</span>,
-// </p>
-// Для значений имени и фамилии используйте значения элементов объекта.
+// function App() {
+// 	const attr = 'block';
+
+// 	return <div>
+// 		text
+// 	</div>;
+// }
+// Вставьте значение константы attr в атрибут id нашего дива.
 
 function App() {
-  const obj = { name: "john", surname: "smit" };
+  const attr = "block";
 
-  return (
-    <>
-      <p>
-        name: <span>{obj.name}</span>
-        surname: <span>{obj.surname}</span>
-      </p>
-    </>
-  );
+  return <div id={attr}>text</div>;
 }
 
 export default App;
