@@ -7,19 +7,18 @@ function id() {
   return nanoid(5);
 }
 
-// 1) Сделайте кнопку, нажатие на которую будет банить пользователя и кнопку, нажатие на которую будет разбанивать пользователя.
-
-// 2) Модифицируйте предыдущую задачу так, чтобы из двух кнопок всегда была видна только соответствующая. То есть, если пользователь забанен, то видна кнопка для разбанивания, а если не забанен - для забанивания.
+// Пусть в стейте хранится число. Выведите это число в абзаце. Сделайте две кнопки. Пусть первая кнопка увеличивает возраст на единицу, а вторая - уменьшает его.
 
 function App() {
-  const [isBan, setIsBan] = useState(false);
+  const [count, setCount] = useState(0);
 
   return (
     <>
       <div>
-        <span>{isBan ? "nope" : "you ban"}</span>
-        <button onClick={() => setIsBan(!isBan)}>
-          {isBan ? "ban user" : "unbanned user"}
+        <span>{count}</span>
+        <button onClick={() => setCount(count + 1)}>plus +</button>
+        <button onClick={() => (count > 0 ? setCount(count - 1) : false)}>
+          minus - 1
         </button>
       </div>
     </>
