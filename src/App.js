@@ -7,20 +7,23 @@ function id() {
   return nanoid(5);
 }
 
-// Пусть в стейте хранится число. Выведите это число в абзаце. Сделайте две кнопки. Пусть первая кнопка увеличивает возраст на единицу, а вторая - уменьшает его.
+// Сделайте два инпута. Пусть текст первого инпута выводится в первый абзац, а текст второго инпута - во второй абзац.
 
 function App() {
-  const [count, setCount] = useState(0);
-
+  const [value1, setValue1] = useState("");
+  const [value2, setValue2] = useState("");
   return (
     <>
-      <div>
-        <span>{count}</span>
-        <button onClick={() => setCount(count + 1)}>plus +</button>
-        <button onClick={() => (count > 0 ? setCount(count - 1) : false)}>
-          minus - 1
-        </button>
-      </div>
+      <input
+        value={value1}
+        onChange={(ev) => setValue1(ev.target.value)}
+      ></input>
+      <input
+        value={value2}
+        onChange={(ev) => setValue2(ev.target.value)}
+      ></input>
+      <p>{value1}</p>
+      <p>{value2}</p>
     </>
   );
 }
