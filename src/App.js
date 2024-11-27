@@ -7,52 +7,29 @@ function id() {
   return nanoid(5);
 }
 
-// Дан чекбокс. С помощью чекбокса спросите у пользователя, если ли ему уже 18 лет. Если чекбокс отмечен, покажите пользователю следующий блок кода:
-{
-  /* <div>
-	<h2>Ура, вам уже есть 18</h2>
-	<p>
-		здесь расположен контент только для взрослых
-	</p>
-</div>
-А если чекбокс не отмечен - то следующий:
+// Сделайте выпадающий список городов. Сделайте также абзац, в который будет выводиться выбор пользователя.
 
- <div>
-	<p>
-		увы, вам еще нет 18 лет:(
-	</p>
-</div> */
-}
-
-const text1 = (
-  <div>
-    <h2>Ура, вам уже есть 18</h2>
-    <p>здесь расположен контент только для взрослых</p>
-  </div>
-);
-const text2 = (
-  <div>
-    <p>увы, вам еще нет 18 лет:</p>
-  </div>
-);
+const polishCities = ["Варшава", "Краков", "Познань", "Вроцлав", "Гданьск"];
 
 function App() {
-  const [checked, setChecked] = useState(false);
+  const [selection, setSelection] = useState("");
 
-  function howOld() {
-    return (checked && text1) || text2;
+  function handleSelect(ev) {
+    setSelection(ev.target.value);
   }
+
+  const createSelect = (
+    <select value={selection} onChange={(ev) => handleSelect(ev)}>
+      {polishCities.map((city) => (
+        <option key={id()}>{city}</option>
+      ))}
+    </select>
+  );
+
   return (
     <>
-      <label>
-        <input
-          checked={checked}
-          type="checkBox"
-          onChange={() => setChecked(!checked)}
-        ></input>
-        do you have 18?
-      </label>
-      {howOld()}
+      {createSelect}
+      <p>{selection}</p>
     </>
   );
 }
