@@ -7,28 +7,116 @@ function id() {
   return nanoid(5);
 }
 
-// Пусть в textarea вводится текст. Сделайте так, чтобы в абзац выводился транслит вводимого текста.
+// Дан чекбокс, кнопка и абзац. По клику на кнопку, если чекбокс отмечен, выведите в абзац текст приветствия с пользователем, а если не отмечен - текст прощания.
 
-// Пусть в textarea на каждой строке вводятся числа. Сделайте так, чтобы по мере ввода в абзац выводилась сумма введенных чисел.
+// function App() {
+//   const [checkBox, setCheckBox] = useState(false);
+//   const [textP, setTextP] = useState("");
+//   const [] = useState("");
+//   return (
+//     <>
+//       <input
+//         type="checkbox"
+//         checked={checkBox}
+//         onChange={() => setCheckBox(!checkBox)}
+//       ></input>
+//       <button onClick={() => (checkBox ? setTextP("HI") : setTextP("bey"))}>
+//         click
+//       </button>
+//       <p>состояние {textP}</p>
+//     </>
+//   );
+// }
+// export default App;
 
+// С помощью трех чекбоксов попросите пользователя выбрать языки, которые он знает: html, css и js. Результат выбора по каждому языку выводите в отдельные абзацы.
+
+// first try
+
+// function App() {
+//   // const language = ['js', 'css', 'html'];
+//   const [checkJS, setCheckJS] = useState(false);
+//   const [checkCSS, setCheckCSS] = useState(false);
+//   const [checkHTML, setCheckHTML] = useState(false);
+
+//   const [value, setValue] = useState("");
+
+//   function text(setUseSate, check, ev) {
+//     setUseSate(!check);
+//     console.log(ev.target.value);
+//   }
+
+//   return (
+//     <>
+//       <label>
+//         <input
+//           type="checkbox"
+//           checked={checkJS}
+//           onChange={(ev) => text(setCheckJS, checkJS, ev)}
+//           value={"js"}
+//         ></input>
+//         js
+//       </label>
+//       <label>
+//         <input
+//           type="checkbox"
+//           checked={checkCSS}
+//           onChange={(ev) => text(setCheckCSS, checkCSS, ev)}
+//           value={"css"}
+//         ></input>
+//         css
+//       </label>
+
+//       <label>
+//         <input
+//           type="checkbox"
+//           checked={checkHTML}
+//           onChange={(ev) => text(setCheckHTML, checkHTML, ev)}
+//           value="HTML"
+//         ></input>
+//         html
+//       </label>
+//       <p>{checkJS ? "js" : false}</p>
+//       <p>{checkCSS ? "css" : false}</p>
+//       <p>{checkHTML ? "html" : false}</p>
+//     </>
+//   );
+// }
+
+//second try
 function App() {
-  const [areaText, setAreaText] = useState("");
-  const [value, setValue] = useState();
+  const language = ["js", "css", "html"];
+  const [checkedLanguage, setCheckedLanguage] = useState(
+    language.reduce((acc, lang) => ({ ...acc, [lang]: false }), {})
+  );
 
-  function sumArr(arr) {
-    const num = arr.split(/\n/).reduce((acc, num) => acc + +num, 0);
-    setValue(num);
+  function changeBox(boxLang) {
+    setCheckedLanguage((prev) => ({ ...prev, [boxLang]: !prev[boxLang] }));
   }
 
-  function result(textArea) {
-    const arrNum = textArea.target.value.replace(/[^\d\r\n]/g, "");
-    sumArr(arrNum);
-    setAreaText(textArea.target.value);
+  function createInputs() {
+    return language.map((lang) => (
+      <label key={id()}>
+        <input
+          key={id()}
+          type="checkBox"
+          checked={checkedLanguage[lang]}
+          onChange={() => changeBox(lang)}
+        ></input>
+        {lang}
+      </label>
+    ));
+  }
+
+  function createText() {
+    return language.map(
+      (text) => checkedLanguage[text] && <p key={id()}>{text}</p>
+    );
   }
   return (
     <>
-      <textarea value={areaText} onChange={(ev) => result(ev)}></textarea>
-      <p>{value}</p>
+      {createInputs()}
+      <div>{createText()}</div>
     </>
   );
 }
