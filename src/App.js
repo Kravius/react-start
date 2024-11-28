@@ -7,29 +7,38 @@ function id() {
   return nanoid(5);
 }
 
-// Сделайте выпадающий список городов. Сделайте также абзац, в который будет выводиться выбор пользователя.
-
-const polishCities = ["Варшава", "Краков", "Познань", "Вроцлав", "Гданьск"];
+// С помощью выпадающего списка предложите пользователю выбрать к какой возрастной группе он относится: от 0 до 12 лет, от 13 до 17, от 18 до 25, либо старше 25 лет.
 
 function App() {
-  const [selection, setSelection] = useState("");
+  const [groupOption, setGroupOption] = useState("");
+  const ageGroup = {
+    first: "0 12",
+    second: "13 17",
+    third: "18 25",
+    fours: "25",
+  };
 
-  function handleSelect(ev) {
-    setSelection(ev.target.value);
+  function selectOption(value) {
+    return <p>{ageGroup[value] || ageGroup.first}</p>;
   }
-
   const createSelect = (
-    <select value={selection} onChange={(ev) => handleSelect(ev)}>
-      {polishCities.map((city) => (
-        <option key={id()}>{city}</option>
+    <select
+    //always show a text from option when we  use select but we also can chose value
+      value={groupOption}
+      onChange={(ev) => setGroupOption(ev.target.value)}
+    >
+      {Object.entries(ageGroup).map(([group, ageText]) => (
+        <option key={id()} value={group}>
+          {ageText}
+        </option>
       ))}
     </select>
   );
-
   return (
     <>
       {createSelect}
-      <p>{selection}</p>
+      <p>{groupOption}</p>
+      {selectOption(groupOption)}
     </>
   );
 }
