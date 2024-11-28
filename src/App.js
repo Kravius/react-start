@@ -7,65 +7,40 @@ function id() {
   return nanoid(5);
 }
 
-// С помощью выпадающего списка предложите пользователю выбрать к какой возрастной группе он относится: от 0 до 12 лет, от 13 до 17, от 18 до 25, либо старше 25 лет.
+// Дан следующий массив:
 
-// function App() {
-//   const [radioValue, setRadioValue] = useState("1");
-//   const radioArray = ["1", "2", "3"];
-
-//   function changeHandlerRadio(ev) {
-//     setRadioValue(ev.target.value);
-//   }
-
-//   const createRadio = radioArray.map((el) => (
-//     <input
-//       type="radio"
-//       value={el}
-//       name="radioTest"
-//       checked={radioValue === el && radioValue}
-//       key={id()}
-//       onChange={(ev) => changeHandlerRadio(ev)}
-//     ></input>
-//   ));
-//   return <>{createRadio}</>;
-// }
-// export default App;
-
-// С помощью радиокнопочек спросите у пользователя его любимый язык программирования. Выведите его выбор в абзац. Если выбран язык JavaScript, похвалите пользователя.
+const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// Выведите на экран среднее арифметическое элементов этого массива. В цикле сделайте инпуты для редактирования элементов.
 
 function App() {
-  const [radioValue, setRadioValue] = useState("");
-  const [radioValueText, setRadioValueText] = useState("");
-  // const radioArray = ["1", "2", "3"];
-  const radioLanguages = { 1: "js", 2: "html", 3: "css" };
+  const [value, setValue] = useState(arr);
 
-  function changeHandlerRadio(ev) {
-    setRadioValue(ev.target.value);
+  function changeHandleInputs(ev, index) {
+    const newValue = [...value];
+    newValue[index] = ev.target.value;
+    setValue(newValue);
+    // setValue([
+    //   ...value.slice(0, index),
+    //   ev.target.value,
+    //   ...value.slice(index + 1),
+    // ]);
+  }
+  function sumArr(value) {
+    return value.reduce((acc, num) => acc + +num, 0);
   }
 
-  const createRadio = Object.entries(radioLanguages).map(([el, text]) => (
-    <label value={text} key={id()}>
-      {text}
-      <input
-        type="radio"
-        value={el}
-        name="radioTest"
-        checked={radioValue === el && radioValue}
-        key={id()}
-        onChange={(ev) => changeHandlerRadio(ev)}
-      ></input>
-    </label>
+  const createInputs = value.map((el, index) => (
+    <input
+      key={index}
+      value={el}
+      onChange={(ev) => changeHandleInputs(ev, index)}
+    ></input>
   ));
+
   return (
     <>
-      <div>
-        <p>what is your favorites language?</p>
-        {createRadio}
-        <p>
-          {radioLanguages[radioValue]}:
-          {radioLanguages[radioValue] === "js" && "good job"}
-        </p>
-      </div>
+      {createInputs}
+      <p>{sumArr(value)}</p>
     </>
   );
 }
