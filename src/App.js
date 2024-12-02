@@ -7,45 +7,45 @@ function id() {
   return nanoid(5);
 }
 
-// Пусть в стейте хранится объект с датой:
+// Сделайте кнопку, по нажатию на которую будет добавляться новый элемент в конец массива, тем самым добавляя новый li в конец тега ul.
 
-const initDate = {
-  year: 2025,
-  month: 12,
-  day: 31,
-};
-// Выведите в абзаце год, месяц и день из даты, хранящейся в стейте, а также день недели, соответствующий ей.
-
-// Модифицируйте предыдущую задачу, добавив три инпута для редактирования даты.
+//Сделайте инпут и кнопку. По нажатию на кнопку пусть текст инпута станет новым тегом li в конец тега ul.
 
 function App() {
-  const [obj, setObj] = useState(initDate);
-  const par = Object.entries(obj).map(([timeKey, timeValue], index) => (
-    <p key={index}>
-      {timeKey}: {timeValue}
-    </p>
-  ));
+  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+  const [valueInp, setValueInp] = useState("");
 
-  function handleInputs(ev, timeKey) {
-    setObj({ ...obj, ...{ [timeKey]: ev.target.value } });
+  const li = notes.map((el, ind) => <li key={ind}>{el}</li>);
+
+  const input = (
+    <input
+      value={valueInp}
+      placeholder="write a new one li"
+      onChange={(ev) => setValueInp(ev.target.value)}
+    ></input>
+  );
+
+  //first task
+  // function addLi() {
+  //   setNotes((prev) => [...prev, +prev[prev.length - 1] + 1]);
+  // }
+
+  function addLi() {
+    if (valueInp.length) {
+      const newLi = [...notes];
+      newLi.push(valueInp);
+      setNotes(newLi);
+      setValueInp("");
+    }
   }
 
-  const inputs = Object.entries(obj).map(([timeKey, timeValue], index) => (
-    <label key={index}>
-      {timeKey}
-      <input
-        key={index}
-        defaultValue={timeValue}
-        onBlur={(ev) => handleInputs(ev, timeKey)}
-      ></input>
-    </label>
-  ));
-
+  const btn = <button onClick={addLi}>click add</button>;
   return (
-    <div>
-      {par}
-      {inputs}
-    </div>
+    <>
+      <ul>{li}</ul>
+      {input}
+      {btn}
+    </>
   );
 }
 export default App;
