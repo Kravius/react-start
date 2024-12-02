@@ -7,41 +7,45 @@ function id() {
   return nanoid(5);
 }
 
-// Дан следующий массив:
+// Пусть в стейте хранится объект с датой:
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-// Выведите на экран среднее арифметическое элементов этого массива. В цикле сделайте инпуты для редактирования элементов.
+const initDate = {
+  year: 2025,
+  month: 12,
+  day: 31,
+};
+// Выведите в абзаце год, месяц и день из даты, хранящейся в стейте, а также день недели, соответствующий ей.
+
+// Модифицируйте предыдущую задачу, добавив три инпута для редактирования даты.
 
 function App() {
-  const [value, setValue] = useState(arr);
+  const [obj, setObj] = useState(initDate);
+  const par = Object.entries(obj).map(([timeKey, timeValue], index) => (
+    <p key={index}>
+      {timeKey}: {timeValue}
+    </p>
+  ));
 
-  function changeHandleInputs(ev, index) {
-    const newValue = [...value];
-    newValue[index] = ev.target.value;
-    setValue(newValue);
-    // setValue([
-    //   ...value.slice(0, index),
-    //   ev.target.value,
-    //   ...value.slice(index + 1),
-    // ]);
-  }
-  function sumArr(value) {
-    return value.reduce((acc, num) => acc + +num, 0);
+  function handleInputs(ev, timeKey) {
+    setObj({ ...obj, ...{ [timeKey]: ev.target.value } });
   }
 
-  const createInputs = value.map((el, index) => (
-    <input
-      key={index}
-      value={el}
-      onChange={(ev) => changeHandleInputs(ev, index)}
-    ></input>
+  const inputs = Object.entries(obj).map(([timeKey, timeValue], index) => (
+    <label key={index}>
+      {timeKey}
+      <input
+        key={index}
+        defaultValue={timeValue}
+        onBlur={(ev) => handleInputs(ev, timeKey)}
+      ></input>
+    </label>
   ));
 
   return (
-    <>
-      {createInputs}
-      <p>{sumArr(value)}</p>
-    </>
+    <div>
+      {par}
+      {inputs}
+    </div>
   );
 }
 export default App;
