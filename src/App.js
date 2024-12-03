@@ -6,127 +6,97 @@ function id() {
   return nanoid(5);
 }
 
-//1 Дан массив с числами. Выведите его в виде списка ul. По клику на любую li возведите ее число в квадрат.
+const initNotes = [
+  {
+    id: "GYi9G_uC4gBF1e2SixDvu",
+    prop1: "value11",
+    prop2: "value12",
+    prop3: "value13",
+  },
+  {
+    id: "IWSpfBPSV3SXgRF87uO74",
+    prop1: "value21",
+    prop2: "value22",
+    prop3: "value23",
+  },
+  {
+    id: "JAmjRlfQT8rLTm5tG2m1L",
+    prop1: "value31",
+    prop2: "value32",
+    prop3: "value33",
+  },
+];
 
-//2 В конце каждой li сделайте кнопку, по нажатию на которую эта li будет удаляться из списка.
+//Сделайте кнопку, по нажатию на которую будет добавляться новый элемент в конец массива, тем самым добавляя новый li в конец тега ul.
 
-//3 Дан инпут. По клику на любую li сделайте так, чтобы текст этой li попал в инпут.
-
-//4 Модифицируйте предыдущую задачу так, чтобы по потери фокуса инпута измененный текст попадал в соответствующую li.
-
-//5 Дана кнопка. По клику на эту кнопку переверните порядок li на обратный.
+// Сделайте три инпута и кнопку. По нажатию на кнопку из данных инпута создайте новую li в конце тега ul.
 
 function App() {
-  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+  const [notes, setNotes] = useState(initNotes);
+  const [inputsValue, setInputsValue] = useState({
+    prop1: "",
+    prop2: "",
+    prop3: "",
+  });
 
-  //мое решение задачи 3-4
-  // const [inputValue, setInputValue] = useState({ index: "" });
+  function spans({ prop1, prop2, prop3 }) {
+    return (
+      <>
+        <span>{prop1}</span>
+        <span>{prop2}</span>
+        <span>{prop3}</span>
+      </>
+    );
+  }
 
-  const [indexInput, setIndexInput] = useState(null);
-  const [valueInput, setValueInput] = useState("");
+  const createLi = notes.map((note) => <li key={note.id}>{spans(note)}</li>);
+
+  const createBtn = <button onClick={addNewLi}>click to add</button>;
 
   //first task
-  // function squareLi(ev, index) {
-  //   const newNote = [...notes];
-  //   newNote[index] = newNote[index] ** 2;
-  //   setNotes(newNote);
+  // function addNewLi() {
+  //   const newNotes = [...notes];
+  //   newNotes.push({
+  //     id: id(),
+  //     prop1: "value31",
+  //     prop2: "value32",
+  //     prop3: "value33",
+  //   });
+  //   setNotes(newNotes);
   // }
 
-  function changeLi(index) {
-    setValueInput(notes[index]);
-    setIndexInput(index);
-  }
-
-  const lis = notes.map((el, index) => (
-    //first task
-    // <li key={index} onClick={(ev) => squareLi(ev, index)}>
-
-    <li key={index} onClick={(ev) => changeLi(index)}>
-      {el}
-      {createBtn(index)}
-    </li>
-  ));
-
-  function createBtn(index) {
-    return <button onClick={(ev) => deleteLi(ev, index)}>delete</button>;
-  }
-
-  function deleteLi(ev, index) {
-    ev.stopPropagation();
-    setNotes((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)]);
-  }
-
-  //мое решение задачи 3-4
-
-  // function changeLi(index) {
-  //   setInputValue({ [index]: notes[index] });
-  // }
-
-  // function handleChangeInputs(ev) {
-  //   setInputValue({ [Object.keys(inputValue)]: ev.target.value });
-  // }
-
-  // //мое решение задачи 3-4
-  // const input = (
-  //   <label>
-  //     change li:
-  //     <input
-  //       value={inputValue[Object.keys(inputValue)[0]]}
-  //       onChange={(ev) => handleChangeInputs(ev)}
-  //       onBlur={(ev) => handleChangeLi(ev)}
-  //     ></input>
-  //   </label>
-  // );
-
-  // function handleChangeLi(ev) {
-  //   const keyLi = Object.keys(inputValue)[0];
-  //   if (keyLi !== "index") {
-  //     const newLi = [...notes];
-  //     newLi[keyLi] = ev.target.value;
-  //     setNotes(newLi);
-  //   }
-  //   setInputValue({ index: "" });
-  // }
-
-  const input = (
-    <label>
-      change li:
-      <input
-        value={valueInput}
-        onChange={(ev) => handleChangeInputs(ev)}
-        onBlur={(ev) => handleChangeLi(ev)}
-      ></input>
-    </label>
-  );
-
-  function handleChangeInputs(ev) {
-    setValueInput(ev.target.value);
-  }
-
-  function handleChangeLi(ev) {
-    if (indexInput !== null) {
-      const newLi = [...notes];
-      newLi[indexInput] = ev.target.value;
-      setNotes(newLi);
+  function addNewLi() {
+    const isEmpty = Object.values(inputsValue).every((el) => el.length !== 0);
+    console.log(isEmpty);
+    if (isEmpty) {
+      const newNotes = [...notes];
+      newNotes.push({ ...inputsValue, id: id() });
+      setNotes(newNotes);
     }
-    setValueInput("");
   }
 
-  const createReverseBtn = (
-    <button onClick={handleReverse}>reverse click</button>
+  const createInputs = Object.entries(inputsValue).map(
+    ([key, value], index) => (
+      <input
+        key={index}
+        value={value}
+        onChange={(ev) => handleInputs(ev, key)}
+      ></input>
+    )
   );
 
-  function handleReverse() {
-    setNotes((prev) => [...prev].reverse());
+  function handleInputs(ev, key) {
+    console.log(inputsValue);
+    setInputsValue((prev) => ({
+      ...prev,
+      ...{ [key]: ev.target.value },
+    }));
   }
-
   return (
     <>
-      <ul>{lis}</ul>
-      <div>
-        {input}
-        {createReverseBtn}
-      </div>
+      <ul>{createLi}</ul>
+      {createInputs}
+      {createBtn}
     </>
   );
 }
