@@ -27,19 +27,24 @@ const initNotes = [
   },
 ];
 
-//Сделайте кнопку, по нажатию на которую будет добавляться новый элемент в конец массива, тем самым добавляя новый li в конец тега ul.
+const emptyObject = {
+  id: id(),
+  prop1: "",
+  prop2: "",
+  prop3: "",
+};
 
-// Сделайте три инпута и кнопку. По нажатию на кнопку из данных инпута создайте новую li в конце тега ul.
+//1 В конце каждой li сделайте кнопку, по нажатию на которую эта li будет удаляться из списка.
+
+//2 Даны три инпута. В конце каждой li сделайте кнопку, по нажатию на которую данные объекта этой li будут попадать в соответствующие инпуты.
+
+//3 Модифицируйте предыдущую задачу так, чтобы рядом с инпутами была кнопка, по нажатию на которую данные инпутов будут попадать в соответствующую li.
 
 function App() {
   const [notes, setNotes] = useState(initNotes);
-  const [inputsValue, setInputsValue] = useState({
-    prop1: "",
-    prop2: "",
-    prop3: "",
-  });
+  const [inputsValue, setInputsValue] = useState(emptyObject);
 
-  function spans({ prop1, prop2, prop3 }) {
+  function createSpans({ prop1, prop2, prop3 }) {
     return (
       <>
         <span>{prop1}</span>
@@ -49,54 +54,74 @@ function App() {
     );
   }
 
-  const createLi = notes.map((note) => <li key={note.id}>{spans(note)}</li>);
+  const createLi = notes.map((note, indexLi) => (
+    <li key={note.id}>
+      {createSpans(note)}
+      {createBtnDeleteLi(note.id, indexLi)}
+      {createBtnChangeLi(note)}
+    </li>
+  ));
 
-  const createBtn = <button onClick={addNewLi}>click to add</button>;
-
-  //first task
-  // function addNewLi() {
-  //   const newNotes = [...notes];
-  //   newNotes.push({
-  //     id: id(),
-  //     prop1: "value31",
-  //     prop2: "value32",
-  //     prop3: "value33",
-  //   });
-  //   setNotes(newNotes);
-  // }
-
-  function addNewLi() {
-    const isEmpty = Object.values(inputsValue).every((el) => el.length !== 0);
-    console.log(isEmpty);
-    if (isEmpty) {
-      const newNotes = [...notes];
-      newNotes.push({ ...inputsValue, id: id() });
-      setNotes(newNotes);
-    }
+  function createBtnChangeLi(note) {
+    return <button onClick={() => changeLi(note)}>Change</button>;
   }
 
-  const createInputs = Object.entries(inputsValue).map(
-    ([key, value], index) => (
-      <input
-        key={index}
-        value={value}
-        onChange={(ev) => handleInputs(ev, key)}
-      ></input>
-    )
-  );
+  function changeLi(note) {
+    setInputsValue((prev) => ({ ...note }));
+  }
+
+  function createBtnDeleteLi(noteId, indexLi) {
+    return <button onClick={() => deleteLi(noteId, indexLi)}>Delete</button>;
+  }
+
+  function deleteLi(noteId, indexLi) {
+    // setNotes((prevNotes) => {
+    //   const newNotes = [...prevNotes];
+    //   newNotes.splice(indexLi, 1);
+    //   return newNotes;
+    // });
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
+  }
+
+  const createBtnAddNewLi = <button onClick={addNewLi}>click to add</button>;
+
+  const createInputs = Object.entries(inputsValue)
+    .filter(([key]) => key !== "id")
+    .map(([key, value], index) => {
+      return (
+        <input
+          key={index}
+          value={value}
+          onChange={(ev) => handleInputs(ev, key)}
+        ></input>
+      );
+    });
 
   function handleInputs(ev, key) {
-    console.log(inputsValue);
     setInputsValue((prev) => ({
       ...prev,
-      ...{ [key]: ev.target.value },
+      [key]: ev.target.value,
     }));
   }
+
+  function addNewLi() {
+    const { id: idChangeInput } = inputsValue;
+    setNotes((prev) => {
+      return prev.map((el) => {
+        if (el.id === idChangeInput) {
+          setInputsValue(emptyObject);
+          return inputsValue;
+        }
+        return el;
+      });
+    });
+  }
+
   return (
     <>
       <ul>{createLi}</ul>
       {createInputs}
-      {createBtn}
+      {createBtnAddNewLi}
     </>
   );
 }
