@@ -4,15 +4,10 @@ import Employee from "./Employee";
 
 export function CreateEmployees({ initUsers }) {
   const [users, setUsers] = useState(initUsers);
-  const [editTemporaryInput, setEditTemporaryInput] = useState([]);
 
   const handleBunUser = (id) => {
-    setUsers((prevUsers) => bunUser(id, prevUsers));
+    setUsers((prevUsers) => editBtnInputs(id, prevUsers, "userIsBun"));
   };
-
-  function handleBtnEdit(id) {
-    setUsers((prevUsers) => editBtnInputs(id, prevUsers));
-  }
 
   function handleEditInputs(ev, fieldName, id) {
     setUsers((prevUser) =>
@@ -33,9 +28,6 @@ export function CreateEmployees({ initUsers }) {
       surname={surname}
       userIsBun={userIsBun}
       handleBunUser={handleBunUser}
-      edit={edit}
-      handleBtnEdit={handleBtnEdit}
-      // create array in all time when we change inputs
       handleEditInputs={handleEditInputs}
     />
   ));

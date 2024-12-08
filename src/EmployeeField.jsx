@@ -1,20 +1,23 @@
+import { useState } from "react";
+
 export function CreateEmployeeFields({
   name,
-  edit,
   id,
   type,
   handleEditInputs,
 }) {
+  const [isEdit, setIsEdit] = useState(false);
   return (
     <>
       {type}:
-      {edit ? (
+      {isEdit ? (
         <input
           value={name}
           onChange={(ev) => handleEditInputs(ev, type, id)}
+          onBlur={() => setIsEdit(false)}
         ></input>
       ) : (
-        <span>{name} </span>
+        <span onClick={() => setIsEdit(true)}>{name} </span>
       )}
     </>
   );

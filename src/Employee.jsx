@@ -7,9 +7,7 @@ function Employee({
   salary,
   handleBunUser,
   userIsBun,
-  edit,
   handleEditInputs,
-  handleBtnEdit,
 }) {
   return (
     <>
@@ -17,21 +15,18 @@ function Employee({
         <CreateEmployeeFields
           name={name}
           id={id}
-          edit={edit}
           type={"name"}
           handleEditInputs={handleEditInputs}
         />
         <CreateEmployeeFields
           name={surname}
           id={id}
-          edit={edit}
           type={"surname"}
           handleEditInputs={handleEditInputs}
         />
         <CreateEmployeeFields
           name={salary}
           id={id}
-          edit={edit}
           type={"salary"}
           handleEditInputs={handleEditInputs}
         />
@@ -39,9 +34,6 @@ function Employee({
       </p>
       <button onClick={() => handleBunUser(id)}>
         {userIsBun ? "unBun" : "Bun"}
-      </button>
-      <button onClick={() => handleBtnEdit(id)}>
-        {edit ? "Save" : "Edit"}
       </button>
     </>
   );

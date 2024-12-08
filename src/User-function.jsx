@@ -4,5 +4,7 @@ export const bunUser = (id, users) => {
   );
 };
 
-export const editBtnInputs = (id, users) =>
-  users.map((user) => (user.id === id ? { ...user, edit: !user.edit } : user));
+export const editBtnInputs = (id, users, field) =>
+  users.map((user) =>
+    user.id === id ? { ...user, [field]: !user[field] } : user
+  );
