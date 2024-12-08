@@ -24,8 +24,7 @@ export function CreateEmployees({ initUsers }) {
       })
     );
   }
-
-  return users.map(({ id, name, surname, salary, userIsBun, edit }) => (
+  const result = users.map(({ id, name, surname, salary, userIsBun, edit }) => (
     <Employee
       key={id}
       id={id}
@@ -40,4 +39,5 @@ export function CreateEmployees({ initUsers }) {
       handleEditInputs={handleEditInputs}
     />
   ));
+  return <>{result}</>;
 }

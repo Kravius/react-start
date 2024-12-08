@@ -1,3 +1,5 @@
+import { CreateEmployeeFields } from "./EmployeeField";
+
 function Employee({
   id,
   name,
@@ -8,42 +10,33 @@ function Employee({
   edit,
   handleEditInputs,
   handleBtnEdit,
-  blurEditInput,
-  handleEditInput,
 }) {
   return (
     <>
       <p>
-        name:
-        {edit ? (
-          <input
-            value={name}
-            onChange={(ev) => handleEditInputs(ev, "name", id)}
-          ></input>
-        ) : (
-          <span>{name} </span>
-        )}
-        surname:
-        {edit ? (
-          <input
-            value={surname}
-            onChange={(ev) => handleEditInputs(ev, "surname", id)}
-          ></input>
-        ) : (
-          <span>{surname} </span>
-        )}
-        salary:
-        {edit ? (
-          <input
-            value={salary}
-            onChange={(ev) => handleEditInputs(ev, "salary", id)}
-          ></input>
-        ) : (
-          <span>{salary} </span>
-        )}
-        bunUser: <span>{`${userIsBun}`} </span>
+        <CreateEmployeeFields
+          name={name}
+          id={id}
+          edit={edit}
+          type={"name"}
+          handleEditInputs={handleEditInputs}
+        />
+        <CreateEmployeeFields
+          name={surname}
+          id={id}
+          edit={edit}
+          type={"surname"}
+          handleEditInputs={handleEditInputs}
+        />
+        <CreateEmployeeFields
+          name={salary}
+          id={id}
+          edit={edit}
+          type={"salary"}
+          handleEditInputs={handleEditInputs}
+        />
+        <span>userIsBun:{`${userIsBun}`}</span>
       </p>
-      {/* <button onClick={() => bunUser(id, setUsers)}>Bun</button> */}
       <button onClick={() => handleBunUser(id)}>
         {userIsBun ? "unBun" : "Bun"}
       </button>
