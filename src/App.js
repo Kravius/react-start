@@ -1,6 +1,5 @@
 import "./App.css";
 import { nanoid } from "nanoid";
-import { useState } from "react";
 import { CreateEmployees } from "./Employees";
 
 function id() {
@@ -14,14 +13,23 @@ const initUsers = [
     surname: "Shemenkov",
     salary: 100,
     userIsBun: false,
+    edit: false,
   },
-  { id: id(), name: "Olek", surname: "Franc", salary: 200, userIsBun: false },
+  {
+    id: id(),
+    name: "Olek",
+    surname: "Franc",
+    salary: 200,
+    userIsBun: false,
+    edit: false,
+  },
   {
     id: id(),
     name: "Vadim",
     surname: "Lialkovic",
     salary: 300,
     userIsBun: false,
+    edit: false,
   },
 ];
 
