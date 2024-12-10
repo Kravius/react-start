@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 5px;
+  span {
+    color: rgb(86, 22, 214);
+  }
+}
+
+.text-main {
+  font-size: 54px;
+  color: rgb(86, 22, 214);
+}

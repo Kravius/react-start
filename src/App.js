@@ -1,17 +1,11 @@
-import { useState } from "react";
-import "./App.css";
-import { nanoid } from "nanoid";
-import styled from "styled-components";
-import Block1 from "./Block";
-
-function id() {
-  return nanoid(5);
-}
+// import "./App.css";
+import "../src/styles/App.css";
+import TodoList from "./react/section/TodoList";
 
 function App() {
   return (
     <div>
-      <Block1 />
+      <TodoList />
     </div>
   );
 }
