@@ -1,21 +1,24 @@
 import styled from "styled-components";
-import { Button, ButtonClick } from "./Button";
+// import { Button, ButtonClick } from "./Button";
 
-// const ButtonClick = styled.button`
-//   margin: 5px;
-//   font-size: 18px;
-//   cursor: pointer;
-//   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
-//   color: ${(props) => props.color};
-// `;
+const DIVA = styled.div`
+  width: 150px;
+  background: yellow;
+  border: 2px solid black;
+  padding: 15px;
+  margin: 15px;
+`;
+const DIVB = styled(DIVA)`
+  background: green;
+  border: 5px solid black;
+`;
 
-export default function Block() {
+export default function Block1() {
   return (
     <>
-      <Button text={"block"} disabled />
-      <Button text={"click"} $warn />
-      <Button text={"reset"} color="red" />
-      <ButtonClick color={"yellow"}>top</ButtonClick>
+      <DIVA></DIVA>
+      <DIVB></DIVB>
+      <DIVA></DIVA>
     </>
   );
 }
