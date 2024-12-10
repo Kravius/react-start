@@ -4,9 +4,11 @@ const ButtonClick = styled.button`
   font-size: 18px;
   cursor: pointer;
   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
-  color: ${(props) => props.color};
+  color: ${(props) => (props.$warn  ? "red" : "white")};
+  background: ${(props) => (props.$warn  ? "yellow" : "green")};
 `;
 
-export default function Button(props) {
-  return <ButtonClick {...props}>{props.text}</ButtonClick>;
+function Button({ text, ...props }) {
+  return <ButtonClick {...props}>{text}</ButtonClick>;
 }
+export { ButtonClick, Button };
