@@ -1,14 +1,31 @@
 import { useState } from "react";
 import style from "../../styles/AddNewTask.module.css";
-import CreateInputTask from "../components/TaskInputs";
+import CreateInputTask from "../components/CreateInputTask";
 import { AddNewTaskBTN } from "../components/Button";
 
-function AddNewTask() {
+function AddNewTask({ setTaskListData }) {
+  const [valueInput, setValueInput] = useState("");
+
+  function handelAddTaskBtn() {
+    setTaskListData((prev) => [...prev, valueInput]);
+    setValueInput("");
+  }
+
   const newInput = (
     <section>
       <div className={style["container-new-task"]}>
-        {<CreateInputTask />}
-        {<AddNewTaskBTN />}
+        {
+          <CreateInputTask
+            valueInput={valueInput}
+            setValueInput={setValueInput}
+          />
+        }
+        {
+          <AddNewTaskBTN
+            valueInput={valueInput}
+            handelClick={handelAddTaskBtn}
+          />
+        }
       </div>
     </section>
   );

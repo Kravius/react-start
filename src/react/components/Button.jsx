@@ -1,6 +1,14 @@
 import style from "../../styles/AddNewTask.module.css";
 
-function AddNewTaskBTN() {
-  return <button className={style["add-task-btn"]}>ADD +</button>;
+function AddNewTaskBTN({ handelClick }) {
+  console.log(123);
+  return (
+    <button
+      onClick={() => handelClick()}
+      className={style["add-task-btn"]}
+    >
+      ADD +
+    </button>
+  );
 }
 export { AddNewTaskBTN };

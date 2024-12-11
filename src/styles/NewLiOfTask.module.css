@@ -1,0 +1,16 @@
+.task {
+  color: red;
+}
+
+.task-input {
+  padding: 10px;
+  border: 2px solid rgb(101, 67, 67);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.text-task {
+  display: block;
+  font-size: 20px;
+  width: 100%;
+}

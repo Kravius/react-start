@@ -132,3 +132,8 @@ label {
 legend {
   display: block;
 }
+
+section {
+  /* padding: 10px 0; */
+  /* margin: 10px 0; */
+}
