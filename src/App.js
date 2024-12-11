@@ -4,9 +4,9 @@ import TodoList from "./react/section/TodoList";
 
 function App() {
   return (
-    <div>
+    <>
       <TodoList />
-    </div>
+    </>
   );
 }
 

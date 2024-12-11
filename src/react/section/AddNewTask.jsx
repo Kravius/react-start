@@ -1,21 +1,29 @@
 import { useState } from "react";
 import style from "../../styles/AddNewTask.module.css";
-
-const startText = "Add your task";
+import CreateInputTask from "../components/TaskInputs";
+import { AddNewTaskBTN } from "../components/Button";
 
 function AddNewTask() {
-  const [valueInput, setValueInput] = useState(startText);
   const newInput = (
-    <div className={style["container-new-task"]}>
-      <input
-        className={style["input-add-new-task"]}
-        value={valueInput}
-        onChange={(ev) => setValueInput(ev.target.value)}
-      ></input>
-      <button className={style["add-task-btn"]}>ADD +</button>
-    </div>
+    <section>
+      <div className={style["container-new-task"]}>
+        {<CreateInputTask />}
+        {<AddNewTaskBTN />}
+      </div>
+    </section>
   );
   return newInput;
 }
+
+// function CreateInputTask() {
+//   const [valueInput, setValueInput] = useState(startText);
+//   return (
+//     <input
+//       className={style["input-add-new-task"]}
+//       value={valueInput}
+//       onChange={(ev) => setValueInput(ev.target.value)}
+//     ></input>
+//   );
+// }
 
 export { AddNewTask };
