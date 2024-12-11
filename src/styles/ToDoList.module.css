@@ -1,8 +1,10 @@
 .wrapper {
   display: flex;
+  flex-direction: column;
   justify-self: center;
   height: 100vh;
   margin: auto 20px;
+  padding: 10px;
   border: 2px solid black;
   width: 500px;
 }
