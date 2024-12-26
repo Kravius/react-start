@@ -2,11 +2,17 @@ import { useState } from "react";
 import style from "../../styles/TaskList.module.css";
 import CreateTaskOfLi from "../components/TaskOfLi";
 import DeleteListOfTaskBTN from "../components/DeleteListOfTaskBTN";
+import { MoveListToOtherSection } from "../components/MoveListToOtherSection";
 
-function TaskListSection({ setTaskListData, taskListData }) {
+function TaskListSection({
+  taskListDataWeBield,
+  setTaskListDataWeBield,
+  setTaskListMove,
+  text,
+}) {
   function handleInputChange(id) {
     return (ev) => {
-      setTaskListData((prev) => {
+      setTaskListDataWeBield((prev) => {
         const newTaskArr = [...prev];
         newTaskArr[id] = ev.target.value;
         return newTaskArr;
@@ -14,7 +20,7 @@ function TaskListSection({ setTaskListData, taskListData }) {
     };
   }
 
-  const createLi = taskListData.map((taskText, id) => (
+  const createLi = taskListDataWeBield.map((taskText, id) => (
     <li key={id} className={style["list-of-li"]}>
       <CreateTaskOfLi
         id={id}
@@ -22,8 +28,15 @@ function TaskListSection({ setTaskListData, taskListData }) {
         handleInputChange={handleInputChange(id)}
       ></CreateTaskOfLi>
 
+      <MoveListToOtherSection
+        fromSection={setTaskListDataWeBield}
+        toSection={setTaskListMove}
+        text={text}
+        id={id}
+      />
+
       <DeleteListOfTaskBTN
-        setTaskListData={setTaskListData}
+        setTaskListDataWeBield={setTaskListDataWeBield}
         id={id}
       ></DeleteListOfTaskBTN>
     </li>

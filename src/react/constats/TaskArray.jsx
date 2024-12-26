@@ -4,4 +4,6 @@ const taskListDataStart = [
   "ypu must sleep well",
 ];
 
-export { taskListDataStart };
+const DataDone = ["ready", "readysdfs", "ready1234"];
+
+export { taskListDataStart, DataDone };
