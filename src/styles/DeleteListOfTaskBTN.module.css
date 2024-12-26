@@ -1,0 +1,17 @@
+.delete-btn {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  transition: ease-in 0.3s;
+  border: 1px solid transparent;
+  border-radius: 50%;
+
+  &:hover,
+  &:focus {
+    border-color: red;
+  }
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}

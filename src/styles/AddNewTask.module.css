@@ -16,7 +16,7 @@
   width: 100%;
   &:hover,
   &:focus {
-    border: 2px solid rgb(50, 152, 103);
+    border-color: rgb(50, 152, 103);
   }
 }
 
@@ -28,6 +28,7 @@
   border-radius: 50px;
   top: 0px;
   right: 0px;
+  transition: ease-in 0.3s;
   &:hover {
     background-color: green;
     box-shadow: 4px 4px rgb(205, 233, 209);

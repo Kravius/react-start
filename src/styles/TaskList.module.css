@@ -5,4 +5,14 @@
   margin: 20px;
   padding: 10px;
   box-sizing: border-box;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.list-of-li {
+  display: flex;
+  border: 1px solid orange;
+  border-radius: 20px;
+  padding: 5px 5px 5px 10px;
+  align-items: center;
 }

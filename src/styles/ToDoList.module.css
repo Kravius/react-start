@@ -1,9 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  justify-self: center;
-  height: 100vh;
-  margin: auto 20px;
+  margin: 20px auto;
   padding: 10px;
   border: 2px solid black;
   width: 500px;

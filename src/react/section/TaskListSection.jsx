@@ -1,10 +1,9 @@
 import { useState } from "react";
 import style from "../../styles/TaskList.module.css";
 import CreateTaskOfLi from "../components/TaskOfLi";
+import DeleteListOfTaskBTN from "../components/DeleteListOfTaskBTN";
 
 function TaskListSection({ setTaskListData, taskListData }) {
-  // const [taskList, setTaskListData] = useState(taskListData);
-
   function handleInputChange(id) {
     return (ev) => {
       setTaskListData((prev) => {
@@ -16,14 +15,17 @@ function TaskListSection({ setTaskListData, taskListData }) {
   }
 
   const createLi = taskListData.map((taskText, id) => (
-    <li key={id}>
-      {
-        <CreateTaskOfLi
-          id={id}
-          taskText={taskText}
-          handleInputChange={handleInputChange(id)}
-        ></CreateTaskOfLi>
-      }
+    <li key={id} className={style["list-of-li"]}>
+      <CreateTaskOfLi
+        id={id}
+        taskText={taskText}
+        handleInputChange={handleInputChange(id)}
+      ></CreateTaskOfLi>
+
+      <DeleteListOfTaskBTN
+        setTaskListData={setTaskListData}
+        id={id}
+      ></DeleteListOfTaskBTN>
     </li>
   ));
   return (
