@@ -1,7 +1,7 @@
 import { useState } from "react";
 import style from "../../styles/NewLiOfTask.module.css";
 
-export default function CreateTaskOfLi({ taskText, id, handleInputChange }) {
+export default function CreateTaskOfLi({ taskText, textToMove, handleInputChange }) {
   const [inputActive, setInput] = useState(false);
 
   const task = inputActive ? (
@@ -13,6 +13,9 @@ export default function CreateTaskOfLi({ taskText, id, handleInputChange }) {
     ></input>
   ) : (
     <span
+      style={{
+        textDecoration: textToMove === "remake" ? "line-through" : "none",
+      }}
       className={style["text-task"]}
       onClick={() => setInput((prev) => !prev)}
     >

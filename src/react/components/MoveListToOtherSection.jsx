@@ -1,16 +1,33 @@
-function MoveListToOtherSection({ fromSection, toSection, text, id }) {
+import style from "../../styles/Button.module.css";
+
+function MoveListToOtherSection({ fromSection, toSection, textToMove, id }) {
   // fromSection, toSection this is useState set we want change
+  const textToMoveColor = textToMove === "remake" ? "blue" : "green";
+
   const moveList = () => {
+    const dataMove = { move: "" };
+
     fromSection((prevFrom) => {
-      const dataMove = prevFrom[id];
+      dataMove.move = prevFrom[id];
       const updatePrev = prevFrom.filter((_, index) => index !== id);
-      toSection((prevTo) => {
-        return [...prevTo, dataMove];
-      });
       return updatePrev;
     });
+
+    toSection((prevTo) => {
+      return [...prevTo, dataMove.move];
+    });
   };
-  const btn = <button onClick={moveList}>{text}</button>;
+  const btn = (
+    <button
+      className={style["move-btn"]}
+      onClick={moveList}
+      style={{
+        color: textToMoveColor,
+      }}
+    >
+      {textToMove}
+    </button>
+  );
   return btn;
 }
 

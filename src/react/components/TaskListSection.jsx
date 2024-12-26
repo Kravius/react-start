@@ -1,14 +1,14 @@
 import { useState } from "react";
 import style from "../../styles/TaskList.module.css";
-import CreateTaskOfLi from "../components/TaskOfLi";
-import DeleteListOfTaskBTN from "../components/DeleteListOfTaskBTN";
-import { MoveListToOtherSection } from "../components/MoveListToOtherSection";
+import CreateTaskOfLi from "./TaskOfLi";
+import DeleteListOfTaskBTN from "./DeleteListOfTaskBTN";
+import { MoveListToOtherSection } from "./MoveListToOtherSection";
 
 function TaskListSection({
   taskListDataWeBield,
   setTaskListDataWeBield,
   setTaskListMove,
-  text,
+  textToMove,
 }) {
   function handleInputChange(id) {
     return (ev) => {
@@ -25,13 +25,14 @@ function TaskListSection({
       <CreateTaskOfLi
         id={id}
         taskText={taskText}
+        textToMove={textToMove}
         handleInputChange={handleInputChange(id)}
       ></CreateTaskOfLi>
 
       <MoveListToOtherSection
         fromSection={setTaskListDataWeBield}
         toSection={setTaskListMove}
-        text={text}
+        textToMove={textToMove}
         id={id}
       />
 

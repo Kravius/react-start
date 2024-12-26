@@ -1,6 +1,4 @@
-import { useState } from "react";
-import style from "../../styles/TaskListDone.module.css";
-import { TaskListSection } from "./TaskListSection";
+import { TaskListSection } from "../components/TaskListSection";
 
 function TaskListDone({
   taskListDataDone,
@@ -12,7 +10,7 @@ function TaskListDone({
       taskListDataWeBield={taskListDataDone}
       setTaskListDataWeBield={setTaskListDataDone}
       setTaskListMove={setTaskListMove}
-      text={"remake"}
+      textToMove={"remake"}
     />
   );
 }
