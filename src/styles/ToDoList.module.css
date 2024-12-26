@@ -1,8 +1,15 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 110px auto;
   padding: 10px;
   border: 2px solid black;
   width: 500px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  /* height: 100%; */
 }

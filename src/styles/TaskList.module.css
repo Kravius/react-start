@@ -1,6 +1,7 @@
 .task-lists {
   display: flex;
   flex-direction: column;
+
   gap: 10px;
   margin: 20px;
   padding: 10px;
@@ -14,8 +15,14 @@
 
 .list-of-li {
   display: flex;
+  text-align: start;
   border: 1px solid orange;
   border-radius: 20px;
   padding: 5px 5px 5px 10px;
   align-items: center;
+}
+
+.empty {
+  font-size: 30px;
+  margin: auto;
 }

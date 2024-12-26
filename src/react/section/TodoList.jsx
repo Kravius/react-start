@@ -12,25 +12,27 @@ export default function TodoList() {
   const [taskListData, setTaskListData] = useState(taskListDataStart);
   const [taskListDataDone, setTaskListDataDone] = useState(DataDone);
   return (
-    <div className={styles.wrapper}>
-      {<Header></Header>}
-      <main>
-        {<AddNewTask setTaskListData={setTaskListData}></AddNewTask>}
-        {
-          <TaskListMustDo
-            taskListDataMustDo={taskListData}
-            setTaskListDataMustDo={setTaskListData}
-            setTaskListMove={setTaskListDataDone}
-          />
-        }
-        {
-          <TaskListDone
-            taskListDataDone={taskListDataDone}
-            setTaskListDataDone={setTaskListDataDone}
-            setTaskListMove={setTaskListData}
-          />
-        }
-      </main>
+    <div className={styles["container"]}>
+      <div className={styles.wrapper}>
+        {<Header></Header>}
+        <main>
+          {<AddNewTask setTaskListData={setTaskListData}></AddNewTask>}
+          {
+            <TaskListMustDo
+              taskListDataMustDo={taskListData}
+              setTaskListDataMustDo={setTaskListData}
+              setTaskListMove={setTaskListDataDone}
+            />
+          }
+          {
+            <TaskListDone
+              taskListDataDone={taskListDataDone}
+              setTaskListDataDone={setTaskListDataDone}
+              setTaskListMove={setTaskListData}
+            />
+          }
+        </main>
+      </div>
     </div>
   );
 }

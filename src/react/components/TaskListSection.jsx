@@ -45,7 +45,13 @@ function TaskListSection({
   return (
     <section>
       <div>
-        <ul className={style["task-lists"]}>{createLi}</ul>
+        <ul className={style["task-lists"]}>
+          {taskListDataWeBield.length > 0 ? (
+            createLi
+          ) : (
+            <span className={style['empty']}>You don't have any plan!</span>
+          )}
+        </ul>
       </div>
     </section>
   );
