@@ -1,9 +1,5 @@
-const taskListDataStart = [
-  "go to the gym",
-  "lear React all free time",
-  "ypu must sleep well",
-];
+const taskListDataStart = [];
 
-const DataDone = ["ready", "readysdfs", "ready1234"];
+const DataDone = [];
 
 export { taskListDataStart, DataDone };

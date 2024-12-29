@@ -10,6 +10,11 @@ function TaskListSection({
   setTaskListMove,
   textToMove,
 }) {
+  const textToEmptySpan =
+    textToMove === "remake"
+      ? "Start to do something"
+      : `You don't have any plan!`;
+
   function handleInputChange(id) {
     return (ev) => {
       setTaskListDataWeBield((prev) => {
@@ -49,7 +54,7 @@ function TaskListSection({
           {taskListDataWeBield.length > 0 ? (
             createLi
           ) : (
-            <span className={style['empty']}>You don't have any plan!</span>
+            <span className={style["empty"]}>{textToEmptySpan}</span>
           )}
         </ul>
       </div>
