@@ -1,10 +1,18 @@
 import "./App.css";
-import Hooks from "./components/workDirectory";
+import "./style/hookUseContextParent.css";
+
+import { useState } from "react";
+import { MyContext } from "./components/MyContext";
+import HookUseContextParent from "./components/HookUseContextParent";
 
 function App() {
+  const [age, setAge] = useState(42);
+  console.log(MyContext);
   return (
     <>
-      <Hooks />
+      <MyContext.Provider value={{ age, setAge }}>
+        <HookUseContextParent />
+      </MyContext.Provider>
     </>
   );
 }
