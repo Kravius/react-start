@@ -1,12 +1,11 @@
 import "./App.css";
+import Memo from "./components/memo/memo";
 import "./style/hookUseContextParent.css";
-
-import UseMemo from "./components/useMemo/UseMemo";
 
 function App() {
   return (
     <>
-      <UseMemo />
+      <Memo />
     </>
   );
 }
