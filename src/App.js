@@ -1,11 +1,12 @@
 import "./App.css";
-import Memo from "./components/memo/memo";
+
+import UseCallback from "./components/useCallback/UseCallback";
 import "./style/hookUseContextParent.css";
 
 function App() {
   return (
     <>
-      <Memo />
+      <UseCallback />
     </>
   );
 }
