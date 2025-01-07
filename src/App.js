@@ -1,15 +1,12 @@
 import "./App.css";
 import "./style/hookUseContextParent.css";
 
-import { useState } from "react";
-import { MyContext } from "./components/useContext/MyContext";
-
-import HookUseRef from "./components/useRef/HookUseRef";
+import UseMemo from "./components/useMemo/UseMemo";
 
 function App() {
   return (
     <>
-      <HookUseRef />
+      <UseMemo />
     </>
   );
 }
