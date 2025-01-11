@@ -1,12 +1,12 @@
 import "./App.css";
 
-import UseCallback from "./components/useCallback/UseCallback";
+import UseTransition from "./components/useTransition/UseTransition";
 import "./style/hookUseContextParent.css";
 
 function App() {
   return (
     <>
-      <UseCallback />
+      <UseTransition />
     </>
   );
 }
