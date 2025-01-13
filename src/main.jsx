@@ -4,11 +4,17 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import ErrorPage404 from "./ErrorPage404";
-import { Products, Students } from "./routes/products";
+import { Products, loader as productLoader } from "./routes/products";
 import Root, {
   loader as rootLoader,
   action as rootAction,
 } from "./routes/root";
+import Edit, {
+  loader as editProductLoader,
+  action as editAction,
+} from "./routes/edit";
+import { action as deleteAction } from "./routes/delete";
+import Index from "./routes/index";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +24,23 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction,
     children: [
+      { index: true, element: <Index /> },
       {
-        path: "products/:productsId",
+        errorElement: <ErrorPage404 />,
+        path: "products/:productId",
         element: <Products />,
+        loader: productLoader,
+        // action: productAction,
+      },
+      {
+        path: "products/:productId/edit",
+        element: <Edit />,
+        loader: editProductLoader,
+        action: editAction,
+      },
+      {
+        path: "products/:productId/delete",
+        action: deleteAction,
       },
     ],
   },

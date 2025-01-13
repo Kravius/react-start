@@ -1,19 +1,28 @@
-import { useRef } from "react";
-import { Outlet, Link, useLoaderData, Form } from "react-router-dom";
+import {
+  Outlet,
+  Link,
+  useLoaderData,
+  Form,
+  redirect,
+  NavLink,
+  useNavigation,
+} from "react-router-dom";
 import { getProducts, createProduct } from "../forStorage";
 
 export async function loader() {
   const products = await getProducts();
-  console.log(products);
+  // console.log(products);
   return { products };
 }
 
 export async function action() {
-  const product = createProduct();
-  return { product };
+  const product = await createProduct();
+  console.log(product);
+  return redirect(`/products/${product.id}/edit`);
 }
 
 function Root() {
+  const navigation = useNavigation();
   const { products } = useLoaderData();
   return (
     <div id="main">
@@ -24,9 +33,15 @@ function Root() {
         {products.length ? (
           <nav>
             {products.map((prod) => (
-              <Link key={prod.id} to={`products/${prod.id}`}>
-                {prod.name ? prod.name : <i>none none</i>}
-              </Link>
+              <NavLink
+                key={prod.id}
+                to={`products/${prod.id}`}
+                className={({ isActive, isPending }) =>
+                  isActive ? "active" : isPending ? "loading" : ""
+                }
+              >
+                {prod.id ? prod.id : <i>none none</i>}
+              </NavLink>
             ))}
           </nav>
         ) : (
@@ -36,7 +51,10 @@ function Root() {
         )}
       </div>
 
-      <div id="product">
+      <div
+        id="product"
+        className={navigation.state === "loading" ? "loading" : ""}
+      >
         <Outlet />
       </div>
     </div>

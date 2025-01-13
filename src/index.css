@@ -95,3 +95,24 @@ div#main {
 div#product {
   margin-left: 40px;
 }
+
+a.active {
+  font-weight: bold;
+  color: brown;
+}
+
+a.loading {
+  color: gray;
+}
+
+div.loading {
+  opacity: 0.3;
+}
+
+div#control {
+  display: flex;
+}
+
+button {
+  margin-right: 5px;
+}
