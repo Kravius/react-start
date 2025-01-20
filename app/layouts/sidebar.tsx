@@ -2,10 +2,16 @@ import { Form, Link, Outlet } from "react-router";
 import type { Route } from "./+types/sidebar";
 import { getContacts } from "../data";
 
-export async function clientLoader() {
+//и то и то подгружает данные до рендеринга странницы, вызывается автоматом, не нужно их самим вызывать
+export async function loader() {
   const contacts = await getContacts();
   return { contacts };
 }
+
+// export async function clientLoader() {
+//   const contacts = await getContacts();
+//   return { contacts };
+// }
 
 export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
   // console.log(loaderData);

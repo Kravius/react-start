@@ -1,39 +1,21 @@
 import type { Route } from "./+types/contact";
-
-import {
-  Form,
-  Scripts,
-  ScrollRestoration,
-  isRouteErrorResponse,
-  Outlet,
-  Link,
-} from "react-router";
+import { getContact } from "../data";
+import { Form, Outlet, Link } from "react-router";
 import type { ContactRecord } from "app/data";
 
-// export async function clientLoader() {
-//   const contact = {
-//     avatar:
-//       "https://sessionize.com/image/d14d-400o400o2-pyB229HyFPCnUcZhHf3kWS.png",
-//     first: "Oscar",
-//     last: "Newman",
-//     twitter: "@__oscarnewman",
-//   };
-
-//   console.log("ContactLoader");
-//   return { contact };
-// }
+export async function loader({ params }: Route.LoaderArgs) {
+  const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response("noop", { status: 404 });
+  }
+  console.log("ContactLoader");
+  return { contact };
+}
 
 const Contact = ({ loaderData }: Route.ComponentProps) => {
-  // const { contact } = loaderData;
+  const { contact } = loaderData;
   // console.log(contact);
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placecats.com/200/200",
-    twitter: "your_handel",
-    notes: "Some notes",
-    favorite: true,
-  };
+
   return (
     <div id="contact">
       <div>
