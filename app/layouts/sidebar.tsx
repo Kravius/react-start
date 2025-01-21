@@ -13,8 +13,14 @@ export async function loader() {
 //   return { contacts };
 // }
 
+import { createEmptyContact } from "../data";
+
+// export async function action() {
+//   const contact = await createEmptyContact();
+//   return { contact };
+// }
+
 export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
-  // console.log(loaderData);
   const { contacts } = loaderData;
   return (
     <>

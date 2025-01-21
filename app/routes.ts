@@ -6,8 +6,9 @@ export default [
   layout("layouts/sidebar.tsx", [
     index("routes/home.tsx"),
     route("contacts/:contactId", "routes/contact.tsx"),
-    route("contacts/:contactId/edit", "routes/editContact.tsx"),
+    route("contacts/:contactId/edit", "routes/edit-contact.tsx"),
   ]),
 
   route("about", "routes/about.tsx"),
+  // route("new", "routes/new.tsx"),
 ] satisfies RouteConfig;

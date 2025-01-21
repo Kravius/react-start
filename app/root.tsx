@@ -5,9 +5,17 @@ import {
   isRouteErrorResponse,
   Outlet,
   Link,
+  redirect,
 } from "react-router";
 import appStylesHref from "./app.css?url";
 import type { Route } from "./+types/root";
+
+import { createEmptyContact } from "./data";
+
+export async function action() {
+  const contact = await createEmptyContact();
+  return redirect(`contacts/${contact.id}/edit`);
+}
 
 export default function App() {
   return <Outlet />;
